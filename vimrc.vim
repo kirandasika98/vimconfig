@@ -53,7 +53,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 set background=dark
-colorscheme space-vim-dark
+colorscheme dracula
 let g:seoul256_background = 236
 
 " Syntax Highlighting
