@@ -14,8 +14,6 @@ call vundle#begin()
 " === Plugin Manager
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
 
 " Golang plugins
 Plugin 'fatih/vim-go'
@@ -39,6 +37,7 @@ Plugin 'erichdongubler/vim-sublime-monokai'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dracula/vim'
+Plugin 'altercation/vim-colors-solarized'
 
 " Helpers
 Plugin 'terryma/vim-multiple-cursors'
@@ -46,14 +45,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'skywind3000/asyncrun.vim'
- Plugin 'editorconfig/editorconfig-vim'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set background=dark
-colorscheme dracula
 let g:seoul256_background = 236
 
 " Syntax Highlighting
@@ -124,7 +124,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'one',
     \ }
 
 " fzf settings
