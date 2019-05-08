@@ -53,13 +53,14 @@ Plugin 'itchyny/lightline.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set background=dark
+set background=light
+colorscheme gruvbox
 let g:seoul256_background = 236
 
 " Syntax Highlighting
 syntax on
 " Autoreloading for .vimrc files
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost vimrc.vim source %
 " Better copy & pate
 set pastetoggle=<F2>
 set clipboard=unnamed
