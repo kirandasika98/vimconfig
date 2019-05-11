@@ -14,11 +14,8 @@ call vundle#begin()
 " === Plugin Manager
 Plugin 'VundleVim/Vundle.vim'
 
-
 " Golang plugins
 Plugin 'fatih/vim-go'
-Plugin 'fatih/molokai'
-Plugin 'SirVer/ultisnips'
 
 "Python plugins
 Plugin 'Vimjas/vim-python-pep8-indent'
@@ -37,6 +34,7 @@ Plugin 'erichdongubler/vim-sublime-monokai'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dracula/vim'
+Plugin 'fatih/molokai'
 Plugin 'altercation/vim-colors-solarized'
 
 " Helpers
@@ -49,11 +47,12 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'itchyny/lightline.vim'
+Plugin 'SirVer/ultisnips'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set background=light
+set background=dark
 colorscheme gruvbox
 let g:seoul256_background = 236
 
@@ -100,6 +99,7 @@ au BufRead,BufNewFile TODO setfiletype todo
 " vim-go settings
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
+let g:go_def_mode='gopls'
 
 " easy switch panes
 map <C-j> <C-W>j
@@ -125,7 +125,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-    \ 'colorscheme': 'one',
+    \ 'colorscheme': 'wombat',
     \ }
 
 " fzf settings
