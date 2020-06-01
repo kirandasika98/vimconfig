@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set encoding=UTF-8
+inoremap jj <ESC>
 
 " this enables project specific vimrc settings
 set exrc
@@ -8,78 +9,51 @@ set exrc
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" === Plugin Manager
 Plugin 'VundleVim/Vundle.vim'
 
 " Golang plugins
 Plugin 'fatih/vim-go'
 
-"Python plugins
-Plugin 'Vimjas/vim-python-pep8-indent'
-
 " Helpers
+Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf.vim'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'itchyny/lightline.vim'
-Plugin 'SirVer/ultisnips'
 
 " Autocompletion engine
 Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
-Plugin 'arcticicestudio/nord-vim'
+Plugin 'morhetz/gruvbox'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()
+filetype plugin indent on
 
-colorscheme nord
+colorscheme gruvbox
 set background=dark
 set termguicolors
 
-" Syntax Highlighting
 syntax on
-" Autoreloading for .vimrc files
 autocmd! bufwritepost vimrc.vim source %
-" Better copy & pate
 set pastetoggle=<F2>
 set clipboard=unnamed
-" Mouse and backspacet
 set mouse=a
 set bs=2
-" set tabs to have 4 spaces
 set ts=4
-" indent when moving to the next line while writing code
 set autoindent
-" expand tabs into spaces
 set expandtab
-" when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
-" show a visual line under the cursor's current line
-"set cursorline
-" show the matching part of the pair for [] {} and ()
-"set showmatch
 set noshowmatch
-"set colorcolumn=80
-
-" enable all Python syntax highlighting features
-let python_highlight_all = 1
-
-" Will be easier to switch modes
-inoremap jj <ESC>
-
-" Turn backup off, since most stuff is in SVN, git etc anyway...
+set colorcolumn=80
+set laststatus=2
 set nobackup
 set nowb
 set noswapfile
+set number relativenumber
+set nu rnu
 
 " some todo stuff
 au BufRead,BufNewFile *.todo setfiletype todo
@@ -87,29 +61,16 @@ au BufRead,BufNewFile TODO setfiletype todo
 
 " vim-go settings
 let g:go_fmt_command = "goimports"
-let g:go_auto_sameids = 1
+let g:go_rename_command = "gopls"
+let g:go_auto_sameids = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 
-" easy switch panes
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" === set indentation for yaml files to 2
-"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-"autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
-
-" === flake8
-let g:flake8_show_in_file=1
-
-" turn hybrid line numbers on
-set number relativenumber
-set nu rnu
 
 " fzf settings
 set rtp+=/usr/local/opt/fzf
@@ -122,11 +83,6 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-"let g:fzf_layout = { 'window': 'enew' }
-"let g:fzf_layout = { 'window': '-tabnew' }
-"let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -148,6 +104,11 @@ let g:fzf_colors =
 map <C-m> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Lightline settings
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
@@ -264,22 +225,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
-" Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Nord theme
-let g:nord_bold_vertical_split_line = 1
