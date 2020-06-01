@@ -15,6 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
 
 " Helpers
+Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdtree'
@@ -38,6 +39,7 @@ set termguicolors
 
 syntax on
 autocmd! bufwritepost vimrc.vim source %
+set incsearch
 set pastetoggle=<F2>
 set clipboard=unnamed
 set mouse=a
@@ -54,6 +56,8 @@ set nowb
 set noswapfile
 set number relativenumber
 set nu rnu
+set undodir=$HOME/.vim/undodir
+set undofile
 
 " some todo stuff
 au BufRead,BufNewFile *.todo setfiletype todo
@@ -234,3 +238,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" UndotreeShow settings
+nnoremap <leader>u :UndotreeShow<CR>
+
+" Sweet Sweet FuGITive
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
