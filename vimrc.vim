@@ -108,6 +108,8 @@ let g:fzf_colors =
 map <C-m> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['.DS_Store', '\.git$']
 
 " Lightline settings
 let g:lightline = {
