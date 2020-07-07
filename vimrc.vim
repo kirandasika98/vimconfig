@@ -247,3 +247,7 @@ nnoremap <leader>u :UndotreeShow<CR>
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
+
+" Gruvbox theme settings
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = '0'
