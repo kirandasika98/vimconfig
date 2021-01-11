@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible             
 filetype off                  " required
 set encoding=UTF-8
 inoremap jj <ESC>
@@ -7,38 +7,38 @@ inoremap jj <ESC>
 set exrc
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Golang plugins
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Helpers
-Plugin 'mbbill/undotree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdcommenter'
+Plug 'itchyny/lightline.vim'
+Plug 'fatih/vim-hclfmt'
+Plug 'Yggdroot/indentLine'
 
 " Autocompletion engine
-Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
-Plugin 'morhetz/gruvbox'
-
-call vundle#end()
-filetype plugin indent on
+Plug 'gruvbox-community/gruvbox'
+call plug#end()
 
 colorscheme gruvbox
+set cursorline
 set background=dark
 set termguicolors
 
 syntax on
 autocmd! bufwritepost vimrc.vim source %
+set nowrap
 set incsearch
 set pastetoggle=<F2>
 set clipboard=unnamed
@@ -47,6 +47,7 @@ set bs=2
 set ts=4
 set autoindent
 set expandtab
+set scrolloff=8
 set shiftwidth=4
 set noshowmatch
 set colorcolumn=80
@@ -70,6 +71,14 @@ let g:go_auto_sameids = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_def_mapping_enabled = 0
+
+" hclfmt settings
+
+
+inoremap <leader>gfs :GoFillStruct<CR>
+
+" rust settings
+let g:rustfmt_autosave = 1
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -114,7 +123,7 @@ let g:NERDTreeIgnore = ['.DS_Store', '\.git$']
 " Lightline settings
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ }
+\ }
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
@@ -249,5 +258,4 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
 " Gruvbox theme settings
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '0'
+let g:gruvbox_contrast_dark = 'soft'
