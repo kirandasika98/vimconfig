@@ -33,10 +33,17 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-colorscheme nord
-set cursorline
+" deal with colors
+if !has('gui_running')
+  set t_Co=256
+endif
+if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
+  " screen does not (yet) support truecolor
+  set termguicolors
+endif
+hi Normal ctermbg=NONE
 set background=dark
-set termguicolors
+colorscheme nord
 
 syntax on
 autocmd! bufwritepost vimrc.vim source %
@@ -73,10 +80,6 @@ let g:go_auto_sameids = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_def_mapping_enabled = 0
-
-" hclfmt settings
-
-
 inoremap <leader>gfs :GoFillStruct<CR>
 
 " rust settings
@@ -124,8 +127,21 @@ let g:NERDTreeIgnore = ['.DS_Store', '\.git$']
 
 " Lightline settings
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-\ }
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
+
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
