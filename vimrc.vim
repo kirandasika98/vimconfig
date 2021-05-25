@@ -29,9 +29,11 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
 Plug 'gruvbox-community/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+
 call plug#end()
 
-colorscheme gruvbox
+colorscheme nord
 set cursorline
 set background=dark
 set termguicolors
